@@ -17,8 +17,7 @@ class Virus{
         Virus(Virus&& ref){
             gen = ref.gen;
             age = ref.age;
-            name= ref.name;
-            ref.name = "";
+            name = std::move(ref.name);
             ref.age=0;
             ref.gen = nullptr;
         }
@@ -40,12 +39,12 @@ class Virus{
                 delete gen;
                 gen = ref.gen;
                 age = ref.age;
-                name= ref.name;
-                ref.name = "";
+                name = std::move(ref.name);
                 ref.age=0;
                 ref.gen = nullptr;
+                return* this;
             }
-            return* this;
+            
         }
         //zwraca nazwe wirusa
         std::string get_name()const {

@@ -13,8 +13,7 @@ class CoronaVirus : public Virus{
             animal = ref.animal;
         }
         CoronaVirus(CoronaVirus&&ref) : Virus(std::move(ref)) {
-            animal = ref.animal;
-            ref.animal = "";
+            animal = std::move(ref.animal);
         }
         CoronaVirus& operator=(const CoronaVirus& ref){
             if(this==&ref)
@@ -30,8 +29,7 @@ class CoronaVirus : public Virus{
                 return *this;
             else{
                 this->Virus::operator=(std::move(ref));
-                animal = ref.animal;
-                ref.animal = "";
+                animal = std::move(ref.animal);
                 return *this;
             }
         }
